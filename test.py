@@ -1,10 +1,13 @@
 import pandas as pd
 import joblib
 from sklearn.metrics import accuracy_score
+from pathlib import Path
 
-model = joblib.load("model.pkl")
 
-test_df = pd.read_csv("Iris.csv")
+BASE_DIR = Path(__file__).resolve().parent
+model = joblib.load(BASE_DIR/"model.pkl")
+
+test_df = pd.read_csv(BASE_DIR / "Iris.csv")
 test_df = test_df.drop("Id", axis=1)
 
 X = test_df.drop("Species", axis = 1)
